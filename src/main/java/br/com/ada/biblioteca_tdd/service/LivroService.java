@@ -18,7 +18,6 @@ public class LivroService {
     LivroRepository livroRepository;
 
     public LivroDTO criarLivro(LivroDTO livroDTO) {
-        // LivroDTO livro = new LivroDTO("titulo", "resumo", 10.0d, 100, "isbn");
         LivroEntity livroEntity = livroMapper.update(livroDTO);
         livroRepository.save(livroEntity);
         return livroMapper.update(livroEntity);
@@ -28,5 +27,7 @@ public class LivroService {
         List<LivroEntity> listaEntities = livroRepository.findAll();
         return livroMapper.updateListaLivroDTO(listaEntities);
     }
+
+    
     
 }

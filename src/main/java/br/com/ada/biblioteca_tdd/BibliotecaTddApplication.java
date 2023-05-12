@@ -3,8 +3,6 @@ package br.com.ada.biblioteca_tdd;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.ada.biblioteca_tdd.model.DTO.LivroDTO;
-
 @SpringBootApplication
 public class BibliotecaTddApplication {
 
