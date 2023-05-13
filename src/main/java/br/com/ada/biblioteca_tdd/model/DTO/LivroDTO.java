@@ -28,7 +28,7 @@ public class LivroDTO {
 
     @NotNull
     @Min(value = 100, message = "Tamanho abaixo do permitido. Mínimo de 100 caracteres.")
-    private int numeroDePaginas;
+    private Integer numeroDePaginas;
 
     @NotBlank(message = "isbn não pode ser branco")
     private String isbn;

@@ -19,7 +19,7 @@ public class LivroEntity {
     private String resumo;
     private String sumario;
     private Double preco;
-    private int numeroDePaginas;
+    private Integer numeroDePaginas;
     private String isbn;
     private LocalDate dataDePublicacao;
 

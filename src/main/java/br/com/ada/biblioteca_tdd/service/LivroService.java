@@ -27,7 +27,5 @@ public class LivroService {
         List<LivroEntity> listaEntities = livroRepository.findAll();
         return livroMapper.updateListaLivroDTO(listaEntities);
     }
-
-    
     
 }
