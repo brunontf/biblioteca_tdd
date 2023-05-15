@@ -1,6 +1,5 @@
 package br.com.ada.biblioteca_tdd.model;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -11,23 +10,25 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.time.LocalDate;
-
 import br.com.ada.biblioteca_tdd.model.DTO.LivroDTO;
+import br.com.ada.biblioteca_tdd.repository.LivroRepository;
 
-// @ExtendWith(MockitoExtension.class)
+
 @AutoConfigureMockMvc
 @SpringBootTest
 
 public class LivroTest {
     @Autowired
     MockMvc mockMvc;
+    
+    @Autowired
+    LivroRepository livroRepository;
     
     ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
     
@@ -248,5 +249,6 @@ public class LivroTest {
             .andExpect(status().isOk());
 
     }
+    
     
 }

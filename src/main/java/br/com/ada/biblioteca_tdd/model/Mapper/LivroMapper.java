@@ -39,7 +39,4 @@ public class LivroMapper {
         return listaLivroEntity.stream().map(livroEntity -> this.update(livroEntity)).toList();
     }
 
-    public List<LivroEntity> updateListaLivroEntity (List<LivroDTO> listaLivroDTO) {
-        return listaLivroDTO.stream().map(livroDTO -> this.update(livroDTO)).toList();
-    }
 }
