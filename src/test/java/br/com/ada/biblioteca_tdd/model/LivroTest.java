@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -16,8 +17,11 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.time.LocalDate;
+
+import br.com.ada.biblioteca_tdd.controller.LivroController;
 import br.com.ada.biblioteca_tdd.model.DTO.LivroDTO;
 import br.com.ada.biblioteca_tdd.repository.LivroRepository;
+import io.restassured.module.mockmvc.RestAssuredMockMvc;
 
 
 @AutoConfigureMockMvc
@@ -49,6 +53,10 @@ public class LivroTest {
     public void listarLivros() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/livros"))
             .andExpect(status().isOk());
+        // RestAssured.when().get("/livros").then().statusCode(200);
+        // RestAssuredMockMvc.given().standaloneSetup(new LivroController())
+        //             .when().get("/livros")
+        //             .then().statusCode(200);
     }
 
     @Test
@@ -59,7 +67,7 @@ public class LivroTest {
             .content(criarLivroPadraoJson()))
             .andExpect(status().isOk())
             .andDo(MockMvcResultHandlers.print());
-        }
+    }
         
     // testando a retirada de parametros opcionais
     @Test
@@ -164,13 +172,14 @@ public class LivroTest {
 
         String string500 = "*";
         LivroDTO livroDTO = objectMapper.readValue(criarLivroPadraoJson(), LivroDTO.class);
-        livroDTO.setResumo(string500.repeat(500));
+        livroDTO.setResumo(string500.repeat(255));
         String livroJson = objectMapper.writeValueAsString(livroDTO);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/livros")
             .contentType(MediaType.APPLICATION_JSON)
             .content(livroJson))
-            .andExpect(status().isBadRequest());
+            .andExpect(status().isOk())
+            .andDo(MockMvcResultHandlers.print());
 
         livroDTO = objectMapper.readValue(criarLivroPadraoJson(), LivroDTO.class);
         livroDTO.setResumo(string500.repeat(501));
