@@ -16,6 +16,7 @@ public class LivroEntity {
     private Long id;
 
     private String titulo;
+    @Column(length = 500)
     private String resumo;
     private String sumario;
     private Double preco;
