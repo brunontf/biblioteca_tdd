@@ -172,7 +172,7 @@ public class LivroTest {
 
         String string500 = "*";
         LivroDTO livroDTO = objectMapper.readValue(criarLivroPadraoJson(), LivroDTO.class);
-        livroDTO.setResumo(string500.repeat(255));
+        livroDTO.setResumo(string500.repeat(500));
         String livroJson = objectMapper.writeValueAsString(livroDTO);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/livros")
