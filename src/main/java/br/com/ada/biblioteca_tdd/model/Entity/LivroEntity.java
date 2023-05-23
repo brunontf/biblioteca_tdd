@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
@@ -16,6 +17,7 @@ public class LivroEntity {
     private Long id;
 
     private String titulo;
+    @Column(length = 500)
     private String resumo;
     private String sumario;
     private Double preco;
